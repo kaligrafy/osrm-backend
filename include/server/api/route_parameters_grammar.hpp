@@ -91,6 +91,9 @@ struct RouteParametersGrammar : public BaseParametersGrammar<Iterator, Signature
                                  qi::_1]) |
             (qi::lit("overview=") >
              overview_type[ph::bind(&engine::api::RouteParameters::overview, qi::_r1) = qi::_1]) |
+            (qi::lit("continue_straight=") >
+              (qi::lit("default") |
+               qi::bool_[ph::bind(&engine::api::RouteParameters::continue_straight, qi::_r1) = qi::_1])) |
             (qi::lit("annotations=") >
              (qi::lit("true")[ph::bind(add_annotation, qi::_r1, AnnotationsType::All)] |
               qi::lit("false")[ph::bind(add_annotation, qi::_r1, AnnotationsType::None)] |
